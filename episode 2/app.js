@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 // to create parent and children like tags in html
 const parent = React.createElement(
   "div",
