@@ -36,11 +36,57 @@ const Header = () => {
     </div>
   );
 };
+/* pass styles as a js object.
+const styleCard = {
+  backgroundColor: "#f0f0f0",
+};
+*/
+const ResturantCard = () => {
+  return (
+    <div className="res-card" /* inline style : style={styleCard}*/>
+      <img
+        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/x6x1srh1d4mlnyppoyvw"
+        alt="resturant-image"
+        className="res-logo"
+      />
+      <h3>Keshari Garnish</h3>
+      <h4>North Indian, Biryani, Asian</h4>
+      <h4>38 minutes</h4>
+    </div>
+  );
+};
+
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="search">Search bar to make</div>
+      <div className="res-container">
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+        <ResturantCard />
+      </div>
+    </div>
+  );
+};
 
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
+      <Body />
     </div>
   );
 };
