@@ -1,22 +1,49 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const Item = () => (
-  <div>
-    <h1 className="huehue">Item</h1>
-  </div>
-);
-const elem = <span>Random</span>;
+/* Basic planning of the app
+- Header Component
+  - Logo
+  - Nav Items
+- Body Component
+  - Search
+  - Resturnat Container
+     - Resturant Card
+- Footer Component
+  - Copyright
+  - Link
+  - About Company like contact,address
+*/
 
-const HeadingComponent = () => (
-  <div>
-    {elem}
-    {Item()}
-    <Item />
-    <h2>Heading 2</h2>
-    <h3>Heading 3</h3>
-  </div>
-);
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img
+          className="logo"
+          src="https://penji.co/wp-content/uploads/2022/08/10.-mr.-d-food-logo.jpg"
+          alt="Company-Logo"
+        />
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+    </div>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<HeadingComponent />);
+root.render(<AppLayout />);
