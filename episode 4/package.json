@@ -1,7 +1,7 @@
 {
-  "name": "episode-3",
-  "version": "1.0.1",
-  "description": "Laying the foundation",
+  "name": "episode-4",
+  "version": "1.0.2",
+  "description": "Building the app",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
