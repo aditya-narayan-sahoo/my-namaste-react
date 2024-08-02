@@ -1,7 +1,7 @@
 {
-  "name": "episode-6",
-  "version": "1.0.4",
-  "description": "Following Microservices Architecture",
+  "name": "episode-7",
+  "version": "1.0.5",
+  "description": "Routing",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
