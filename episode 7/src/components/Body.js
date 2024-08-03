@@ -1,6 +1,7 @@
 import ResturantCard from "./ResturantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
@@ -12,7 +13,7 @@ const Body = () => {
   }, []);
   const fetchData = async () => {
     const data = await fetch(
-      "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.8973944&lng=78.0880129&page_type=DESKTOP_WEB_LISTING"
     );
     const jsonData = await data.json();
     //console.log(jsonData);
@@ -57,20 +58,26 @@ const Body = () => {
             if (isTopRated) {
               // If already filtered, reset to show all restaurants
               setFilteredList(list);
+              setIsTopRated(false);
             } else {
               // Filter to show only top-rated restaurants
-              const topRatedList = list.filter((res) => res.info.avgRating > 4);
+              const topRatedList = list.filter(
+                (res) => res.info.avgRating > 4.3
+              );
+              // console.log(topRatedList);
               setFilteredList(topRatedList);
+              setIsTopRated(true);
             }
-            setIsTopRated(!isTopRated);
           }}
         >
-          Top Rated Resturants
+          4.3* & Above Resturants
         </button>
       </div>
       <div className="res-container">
         {filteredList.map((resturant) => (
-          <ResturantCard key={resturant.info.id} resData={resturant} />
+          <Link to={"/restaurant/" + resturant.info.id}>
+            <ResturantCard key={resturant.info.id} resData={resturant} />
+          </Link>
         ))}
       </div>
     </div>
