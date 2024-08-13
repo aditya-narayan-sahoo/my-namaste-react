@@ -1,5 +1,5 @@
 import React from "react";
-import UserClass from "./UserClass";
+//import UserClass from "./UserClass";
 import "../styles/about.css";
 
 const About = () => {
@@ -62,7 +62,7 @@ const About = () => {
           dining experience a delightful one!
         </p>
       </div>
-      <UserClass name={"Class Wala Component"} location={"earth"} />
+      {/* <UserClass name={"Class Wala Component"} location={"earth"} /> */}
     </>
   );
 };
