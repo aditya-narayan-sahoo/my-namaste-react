@@ -1,19 +1,42 @@
 import Shimmer from "./Shimmer";
 import { Routes, Route, useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const res = useRestaurantMenu(resId);
-
+  //console.log(res);
   if (!res) return <Shimmer />;
 
+  // const { name, cuisines, costForTwoMessage } =
+  //   res?.data?.cards[2]?.card?.card?.info;
+  // const { itemCards } =
+  //   res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards;
+  // console.log(itemCards);
+  const categories =
+    res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    ) || []; // Default to an empty array if undefined
+
+  //console.log(categories);
   return (
-    <div className="menu">
-      <p key={res?.key}>{res?.name}</p>
-      {/* <p>{res?.cuisines.join(",")}</p> */}
-      <p key={res?.key}>{res?.locality}</p>
-      <p key={res?.key}>{res?.avgRatingString}</p>
-      <p key={res?.key}>{res?.costForTwoMsg}</p>
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl mb-2">
+        {res?.data?.cards[2]?.card?.card?.info.name}
+      </h1>
+      <p className="font-bold text-lg">
+        {res?.data?.cards[2]?.card?.card?.info?.cuisines.join(", ")} -{" "}
+        {res?.data?.cards[2]?.card?.card?.info?.costForTwoMessage}
+      </p>
+      {Array.isArray(categories) && categories.length > 0 ? (
+        categories.map((category) => (
+          <RestaurantCategory key={category.id} data={category?.card?.card} />
+        ))
+      ) : (
+        <p>No categories available.</p> // Fallback message
+      )}
     </div>
   );
 };

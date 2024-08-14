@@ -1,4 +1,4 @@
-import ResturantCard, { withOpenLabel } from "./ResturantCard";
+import ResturantCard, { withVegLabel, withNonVegLabel } from "./ResturantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,15 +9,17 @@ const Body = () => {
   const [filteredList, setFilteredList] = useState([]);
   const [isTopRated, setIsTopRated] = useState(false);
 
-  const OpenRestaurantCard = withOpenLabel(ResturantCard);
+  const VegRestaurantCard = withVegLabel(ResturantCard);
+  const NonVegRestaurantCard = withNonVegLabel(ResturantCard);
   // Code to use Live API, take care of API not respnoding
   const [list, setList] = useState([]);
+  console.log(list);
   useEffect(() => {
     fetchData();
   }, []);
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.8973944&lng=78.0880129&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
     );
     const jsonData = await data.json();
     //console.log(jsonData);
@@ -84,10 +86,13 @@ const Body = () => {
       <div className="flex flex-wrap">
         {filteredList.map((resturant) => (
           <Link to={"/restaurant/" + resturant.info.id}>
-            {resturant.info.isOpen ? (
-              <OpenRestaurantCard key={resturant.info.id} resData={resturant} />
+            {resturant.info.veg ? (
+              <VegRestaurantCard key={resturant.info.id} resData={resturant} />
             ) : (
-              <ResturantCard key={resturant.info.id} resData={resturant} />
+              <NonVegRestaurantCard
+                key={resturant.info.id}
+                resData={resturant}
+              />
             )}
           </Link>
         ))}
