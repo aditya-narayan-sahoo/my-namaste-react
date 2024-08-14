@@ -20,4 +20,20 @@ const ResturantCard = (props) => {
   );
 };
 
+//Higher order component
+
+// input -> RestaurantCard    Output -> RestaurantCard-isOpen
+
+export const withOpenLabel = (ResturantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-gray-800 text-white rounded-md ml-3 px-2">
+          OPEN
+        </label>
+        <ResturantCard {...props} />
+      </div>
+    );
+  };
+};
 export default ResturantCard;

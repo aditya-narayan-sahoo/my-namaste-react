@@ -1,4 +1,4 @@
-import ResturantCard from "./ResturantCard";
+import ResturantCard, { withOpenLabel } from "./ResturantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -8,6 +8,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
   const [isTopRated, setIsTopRated] = useState(false);
+
+  const OpenRestaurantCard = withOpenLabel(ResturantCard);
   // Code to use Live API, take care of API not respnoding
   const [list, setList] = useState([]);
   useEffect(() => {
@@ -79,10 +81,14 @@ const Body = () => {
           4.3* & Above Resturants
         </button>
       </div>
-      <div className="res-container flex flex-wrap">
+      <div className="flex flex-wrap">
         {filteredList.map((resturant) => (
           <Link to={"/restaurant/" + resturant.info.id}>
-            <ResturantCard key={resturant.info.id} resData={resturant} />
+            {resturant.info.isOpen ? (
+              <OpenRestaurantCard key={resturant.info.id} resData={resturant} />
+            ) : (
+              <ResturantCard key={resturant.info.id} resData={resturant} />
+            )}
           </Link>
         ))}
       </div>
