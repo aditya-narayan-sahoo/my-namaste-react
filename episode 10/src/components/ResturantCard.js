@@ -5,13 +5,13 @@ const ResturantCard = (props) => {
   const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
     resData?.info; //optional chaining
   return (
-    <div className="res-card">
+    <div className="m-3 p-4 w-56 bg-gray-200 rounded-lg h-[500px] hover:bg-gray-300 hover:-translate-y-1 hover:translate-x-[1px]">
       <img
         src={CDN_URL + cloudinaryImageId}
         alt="resturant-image"
-        className="res-logo"
+        className="rounded-lg"
       />
-      <h3>{name}</h3>
+      <h3 className="font-bold font-serif text-lg py-1">{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
       <h4>{costForTwo}</h4>

@@ -35,15 +35,17 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex items-center justify-center">
+        <div className="search m-3 p-3">
           <input
             type="text"
-            className="search-box"
+            placeholder=" Name of the Restaurant"
+            className="border border-black rounded-md mr-2"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
+            className="px-4 py-1 bg-blue-300 m-1 rounded-lg hover:bg-blue-400 hover:font-medium"
             onClick={() => {
               const singleFiltered = list.filter((resuno) =>
                 resuno.info.name
@@ -57,7 +59,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="px-2 py-1 h-9 -ml-3 bg-green-400 rounded-md hover:bg-green-500 hover:font-medium"
           onClick={() => {
             if (isTopRated) {
               // If already filtered, reset to show all restaurants
@@ -77,7 +79,7 @@ const Body = () => {
           4.3* & Above Resturants
         </button>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filteredList.map((resturant) => (
           <Link to={"/restaurant/" + resturant.info.id}>
             <ResturantCard key={resturant.info.id} resData={resturant} />
