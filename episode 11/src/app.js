@@ -9,19 +9,19 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import UserContext from "./utils/UserContext";
 const About = lazy(() => import("./components/About"));
 const AppLayout = () => {
-  const [userName, setUserName] = useState();
-  useEffect(() => {
-    //dummy data used instead of API CALL
-    const data = { name: "Aditya Narayan Sahoo" };
-    setUserName(data.name);
-  }, []);
+  const [userName, setUserName] = useState("Default User");
+  // useEffect(() => {
+  //   //dummy data used instead of API CALL
+  //   const data = { name: "Aditya Narayan Sahoo" };
+  //   setUserName(data.name);
+  // }, []);
   return (
-    <div>
-      <UserContext.Provider value={{ loggedInUser: userName }}>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div>
         <Header />
-      </UserContext.Provider>
-      <Outlet />
-    </div>
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

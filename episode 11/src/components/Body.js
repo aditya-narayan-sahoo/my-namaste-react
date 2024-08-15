@@ -1,9 +1,10 @@
 import ResturantCard, { withVegLabel, withNonVegLabel } from "./ResturantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Error from "./Error";
+import UserContext from "../utils/UserContext";
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
@@ -35,12 +36,13 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
   if (!onlineStatus) return <Error />;
+  const { loggedInUser, setUserName } = useContext(UserContext);
   return list.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter flex items-center justify-center">
-        <div className="search m-3 p-3">
+    <div className="">
+      <div className="flex items-center justify-center">
+        <div className="m-3 p-3">
           <input
             type="text"
             placeholder=" Name of the Restaurant"
@@ -82,6 +84,14 @@ const Body = () => {
         >
           4.3* & Above Resturants
         </button>
+        <div className="m-2">
+          <label>Name: </label>
+          <input
+            className="px-2 py-1 border border-black rounded-md"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredList.map((resturant) => (
