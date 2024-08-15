@@ -13,7 +13,7 @@ const Body = () => {
   const NonVegRestaurantCard = withNonVegLabel(ResturantCard);
   // Code to use Live API, take care of API not respnoding
   const [list, setList] = useState([]);
-  console.log(list);
+  //console.log(list);
   useEffect(() => {
     fetchData();
   }, []);
