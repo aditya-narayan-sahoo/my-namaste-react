@@ -85,7 +85,7 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap">
         {filteredList.map((resturant) => (
-          <Link to={"/restaurant/" + resturant.info.id}>
+          <Link key={resturant.info.id} to={"/restaurant/" + resturant.info.id}>
             {resturant.info.veg ? (
               <VegRestaurantCard key={resturant.info.id} resData={resturant} />
             ) : (
