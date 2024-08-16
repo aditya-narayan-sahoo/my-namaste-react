@@ -1,7 +1,7 @@
 import Shimmer from "./Shimmer";
 import { Routes, Route, useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
-import RestaurantCategory from "./RestaurantCategory";
+import RestaurantCategory from "../components/RestaurantCategory";
 import { useState } from "react";
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -36,7 +36,7 @@ const RestaurantMenu = () => {
         categories.map((category, index) => (
           //controlled component
           <RestaurantCategory
-            key={category.id}
+            key={`${category.id}-${index}`}
             data={category?.card?.card}
             showItems={index === showIndex}
             setShowIndex={setShowIndex}
