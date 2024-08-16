@@ -14,7 +14,10 @@ const cartSlice = createSlice({
       state.items.pop();
     },
     clearCart: (state) => {
-      state.items.length = 0;
+      // this can also be used : state.items.length = 0;
+      return { items: [] };
+      // here we cannot use items = [] as it does not mutate the state
+      // to mutate the state, we need to do state.items.length = 0
     },
   },
 });
