@@ -19,7 +19,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here we can add our form submission logic (e.g., API call)
-    console.log("Form submitted:", formData);
+    //console.log("Form submitted:", formData);
     setSubmitted(true);
     // Reset form
     setFormData({ name: "", email: "", message: "" });
