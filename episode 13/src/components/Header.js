@@ -14,6 +14,9 @@ const Header = () => {
       <div className="logo-container">
         <img className="w-36" src={LOGO_URL} alt="Company-Logo" />
       </div>
+      <div className="text-5xl p-8 m-4 font-medium font-serif">
+        Mock Food App{" "}
+      </div>
       <div className="flex items-center">
         <ul className="flex p-4 m-4">
           <li className="px-5">
